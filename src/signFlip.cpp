@@ -21,7 +21,7 @@ arma::mat signFlip(arma::mat X, double B) {
     Tb = Tb /n; //mean
     Tb2 = pow (Tb,2)/pow (n,2); //mean power 2
     Tbp = (pow (X,2) * id)/n; //power 2 mean
-    Ts = Tb/ pow ((Tbp-Tb2)/n *n/(n-1), 0.5); //final test
+    Ts = Tb/ pow ((Tbp-Tb2)*n/(n-1), 0.5); //final test
     T.col(bb) = Ts;
     
   }
