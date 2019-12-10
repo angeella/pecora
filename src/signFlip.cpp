@@ -29,11 +29,11 @@ arma::mat signFlip(arma::mat X, double B) {
 }
 
 /*** R
-m <- 100
-n <- 10
-B <- 200
-X <- matrix(rnorm(m*n), ncol=n)
-set.seed(123)
-T <- signFlip(X, B)
-str(T)
+#m <- 100
+#n <- 10
+#B <- 200
+#X <- matrix(rnorm(m*n), ncol=n)
+#set.seed(123)
+#T <- signFlip(X, B)
+#str(T)
 */
