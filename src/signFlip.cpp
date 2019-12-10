@@ -26,6 +26,6 @@ arma::mat signFlip(arma::mat X, double B) {
     T.col(bb) = Ts;
     
   }
-  return T;
+  return (T);
 }
 
