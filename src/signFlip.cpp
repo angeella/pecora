@@ -1,4 +1,3 @@
-#define ARMA_64BIT_WORD 1
 #include <RcppArmadillo.h>
 #include <cmath> /* pow */
 using namespace Rcpp;
@@ -36,4 +35,5 @@ B <- 200
 X <- matrix(rnorm(m*n), ncol=n)
 set.seed(123)
 T <- signFlip(X, B)
+str(T)
 */
