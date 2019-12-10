@@ -12,7 +12,7 @@ oneSample <- function(X, B,
   
   library(matrixStats)
   library(Rcpp)
-  sourceCpp("/Users/Angela Andreella/Documents/Rpackage/signFlip/src/signFlip.cpp")
+  #sourceCpp("/Users/Angela Andreella/Documents/Rpackage/signFlip/src/signFlip.cpp")
   alternative <- match.arg(alternative)
   
   n <- ncol(X) #number of variables

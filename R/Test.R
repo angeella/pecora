@@ -1,4 +1,3 @@
-
 #library(Rcpp)
 #library(flip)
 #sourceCpp("/Users/Angela Andreella/Documents/Rpackage/signFlip/src/signFlip.cpp")
