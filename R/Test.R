@@ -4,7 +4,7 @@
 # H0 <- 100
 # H1 <- 10
 # tests <- oneSample(t(X), 200)
-# dim(pvalues)
+# dim(tests$T0)
 # pch <- 20
 # colStat <- c(rep("red",H0),rep("black",H1))
 # plot(tests$T, col=colStat, main="Test statistics", pch=pch, ylab= 'Test stat')
