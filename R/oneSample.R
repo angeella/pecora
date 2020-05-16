@@ -10,6 +10,7 @@
 #' @return Returns a list with the following objects: \code{Test} observed one sample t-test, \code{Test_H0} Test statistics under H0, \code{pv} observed p-values, \code{pv_H0} p-values under H0
 #' @export
 #' @importFrom stats pnorm
+#' @importFrom matrixStats rowRanks
 
 oneSample <- function(X, B = 1000, 
                       alternative = c("two.sided", "less", "greater"),
