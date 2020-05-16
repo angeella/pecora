@@ -9,27 +9,22 @@ arma::mat signFlip(arma::mat X, double B) {
   int m = X.n_rows;
   int n = X.n_cols;
   
-  arma::mat T(m, B, arma::fill::zeros);
   
-  arma::vec eps, M, id, M0, M2, V, Tb;
+  arma::mat T(m, B, arma::fill::zeros);
+  arma::vec eps, Tb, Tb0, Tb1, Tb2, eps1;
+  
+  //X = X / sqrt(n);    // scaling
   
   int bb;
   for (bb=0; bb<B; bb++) {
-    eps = Rcpp::rbinom(n, 1, 0.5)*2 - 1;  // signs
-    id = Rcpp::rbinom(n, 1, 1)*2 - 1; //identity
+    eps = Rcpp::rbinom(n, 1, 0.5)*2 - 1;  // signs 
+    eps1 = Rcpp::rbinom(n, 1, 1)*2 - 1;  // identity    
     Tb = X * eps;
-    M = Tb /n; //mean
-    //    Tb2 = pow (Tb,2)/pow (n,2); //mean power 2
-    //    Tbp = (pow (X,2) * id)/n; //power 2 mean
-    //Tb2 = (pow(X, 2) * id)/(n-1); //mean x^2
-    //Tb0 = Tb0/n;
-    M0 = (pow(X, 2) * id)/n; //E(x^2)
-    M2 = pow(M,2)/pow(n,2); //E(X)^2
-    V =  (M0-M2)*(n/(n-1)); //sample var
-    T.col(bb) = M/sqrt(V/n);
-    //    Ts = Tb/ pow (((Tbp-Tb2)*n)/(n-1), 0.5); //final test
-    //T0 = M/ pow((V)/n,0.5);
-    //T.col(bb) = T0;
+    Tb1 = Tb / n; //mean
+    Tb0 = (pow(X, 2) * eps1)/n; //E(x^2)
+    Tb2 = pow(Tb1,2)/pow(n,2); //E(X)^2
+    Tb =  (Tb0-Tb2)*(n/(n-1)); //sample var
+    T.col(bb) = Tb1/sqrt(Tb/n);
     
   }
   return (T);

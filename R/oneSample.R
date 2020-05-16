@@ -1,58 +1,62 @@
-oneSample <- function(X, B, 
+#' @title Permutatation-based one sample t-test
+#' @description Performs sign-flipping, i.e. permutation, one-sample t-tests
+#' @usage oneSample(X, B = 1000, alternative = "two.sided", seed = NULL)
+#' @param X data where rows represents the variables and columns the observations
+#' @param B number of permutations to perform, default is 1000.
+#' @param alternative character referring to the alternative hypothesis, "two.sided", "greater" or "less". Default is "two.sided"
+#' @param rand logical. Should p values computed by permutation distribution?
+#' @param seed specify seed, default is 1234.
+#' @author Angela Andreella
+#' @return Returns a list with the following objects: \code{Test} observed one sample t-test, \code{Test_H0} Test statistics under H0, \code{pv} observed p-values, \code{pv_H0} p-values under H0
+#' @export
+#' @importFrom stats pnorm
+
+oneSample <- function(X, B = 1000, 
                       alternative = c("two.sided", "less", "greater"),
-                      rowTestFUN = rowWelchTests,
-                      rand.p.value = FALSE, seed = NULL){
-  rowVars <- function (x,na.rm = TRUE) 
-  {
-    sqr = function(x) x * x
-    n = rowSums(!is.na(x))
-    n[n <= 1] = NA
-    return(rowSums(sqr(x - rowMeans(x,na.rm = na.rm)), na.rm = na.rm)/(n - 1))
-  }
+                      rand = FALSE, seed = 1234){
+
+  alternative_set <- c("two.sided", "greater", "lower")
   
-  library(matrixStats)
-  library(Rcpp)
-  sourceCpp("src/signFlip.cpp")
-  alternative <- match.arg(alternative)
+  set.seed(seed)
   
-  n <- ncol(X) #number of variables
-  m <- nrow(X) #number of observations
+  alternative <- match.arg(tolower(alternative), alternative_set)
   
-  if (!is.null(seed)) {
-    set.seed(seed)
-  }
+  ## number of obeservation
+  n <- ncol(X)
+  # number of variables
+  m <- nrow(X)
   
-  ## observed test statistics and p-values
-  T <- rowMeans(X)/(sqrt(rowVars(X)/n))
-  p <- switch(alternative, 
-              #"two.sided" = 2*(1 - pnorm(abs(T))),
-              "two.sided" = 2*(pnorm(abs(T), lower.tail=FALSE)),
-              #"greater" = 1 - pnorm(T),
-              "greater" = pnorm(T, lower.tail=FALSE),
-              #"less" = pnorm(T))
-              "less" = 1-pnorm(T, lower.tail=FALSE))
-  ## test statistics under H0
-  T0 <- signFlip(X,B)
-  p0 <- switch(alternative, 
-               #"two.sided" = 2*(1 - pnorm(abs(T0))),
-               "two.sided" = 2*(pnorm(abs(T0), lower.tail=FALSE)),
-               #"greater" = 1 - pnorm(T0),
-               "greater" = pnorm(T0, lower.tail=FALSE),
-               "less" = 1-pnorm(T0, lower.tail=FALSE))
-  #"less" = pnorm(T0))
-  res <- list(T = T, T0 = T0, p = p, p0 = p0)
+  ## Observed test statistics
+  rowV <- rowVariance(X)
+  Test <- ifelse(rowV==0,0, rowMeans(X)/(sqrt((rowV)/n)))
   
-  if (rand.p.value) {
-    ## get m x (B+1) matrix of pvalues under the null (+ original)
-    ## by sorting null test statistics as proposed by Ge et al (2003)
-    TT <- cbind(T0, T)
-    pB <- switch(alternative, 
-                 "two.sided" = rowRanks(-abs(TT)) / (B+1),
-                 "greater" = rowRanks(-TT) / (B+1),
-                 "less" = rowRanks(TT) / (B+1))
+  ## Test statistics under H0
+  
+  Test_H0 <- signFlip(X,B)
+  Test_H0 <- ifelse(is.na(Test_H0), 0 , Test_H0)
+  
+  if(!rand){
+    pv <- switch(alternative, 
+                 "two.sided" = 2*(pnorm(abs(Test), lower.tail=FALSE)),
+                 "greater" = pnorm(Test, lower.tail=FALSE),
+                 "less" = 1-pnorm(Test, lower.tail=FALSE))
     
-    res$rand.p <- pB[, B+1]
-    res$rand.p0 <- pB[, -(B+1), drop = FALSE]
+    pv_H0 <- switch(alternative, 
+                    "two.sided" = 2*(pnorm(abs(Test_H0), lower.tail=FALSE)),
+                    "greater" = pnorm(Test_H0, lower.tail=FALSE),
+                    "less" = 1-pnorm(Test_H0, lower.tail=FALSE))
+  }else{
+    
+    Test_matrix <- cbind(Test, Test_H0)
+    pv_matrix <- switch(alternative, 
+                        "two.sided" = rowRanks(-abs(Test_matrix)) / (B+1),
+                        "greater" = rowRanks(-Test_matrix) / (B+1),
+                        "less" = rowRanks(Test_matrix) / (B+1))
+    
+    pv <- pv_matrix[, 1]
+    pv_H0 <- pv_matrix[, 2:(B+1)]
   }
-  return(res)
+  
+  out <- list(Test = Test, Test_H0 = Test_H0, pv = pv, pv_H0 = pv_H0)
+  return(out)
 }
