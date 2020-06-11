@@ -13,7 +13,7 @@
 #' @importFrom matrixStats rowRanks
 
 oneSample <- function(X, B = 1000, 
-                      alternative = c("two.sided", "less", "greater"),
+                      alternative = c("two.sided", "lower", "greater"),
                       rand = FALSE, seed = 1234){
 
   alternative_set <- c("two.sided", "greater", "lower")
@@ -40,19 +40,19 @@ oneSample <- function(X, B = 1000,
     pv <- switch(alternative, 
                  "two.sided" = 2*(pnorm(abs(Test), lower.tail=FALSE)),
                  "greater" = pnorm(Test, lower.tail=FALSE),
-                 "less" = 1-pnorm(Test, lower.tail=FALSE))
+                 "lower" = 1-pnorm(Test, lower.tail=FALSE))
     
     pv_H0 <- switch(alternative, 
                     "two.sided" = 2*(pnorm(abs(Test_H0), lower.tail=FALSE)),
                     "greater" = pnorm(Test_H0, lower.tail=FALSE),
-                    "less" = 1-pnorm(Test_H0, lower.tail=FALSE))
+                    "lower" = 1-pnorm(Test_H0, lower.tail=FALSE))
   }else{
     
     Test_matrix <- cbind(Test, Test_H0)
     pv_matrix <- switch(alternative, 
                         "two.sided" = rowRanks(-abs(Test_matrix)) / (B+1),
                         "greater" = rowRanks(-Test_matrix) / (B+1),
-                        "less" = rowRanks(Test_matrix) / (B+1))
+                        "lower" = rowRanks(Test_matrix) / (B+1))
     
     pv <- pv_matrix[, 1]
     pv_H0 <- pv_matrix[, 2:(B+1)]
