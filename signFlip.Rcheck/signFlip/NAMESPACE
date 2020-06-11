@@ -1,0 +1,5 @@
+useDynLib(signFlip, .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+importFrom(stats, pnorm)
+importFrom(matrixStats, rowRanks)
+exportPattern("^[[:alpha:]]+")

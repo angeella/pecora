@@ -1,0 +1,143 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8,latin1]{inputenc}
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `signFlip'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Permutation based one sample t test}
+\item[Version]\AsIs{1.0}
+\item[Date]\AsIs{2019-12-10}
+\item[Author]\AsIs{Angela Andreella}
+\item[Maintainer]\AsIs{Angela Andreella }\email{angela.andreella@phd.unipd.it}\AsIs{}
+\item[Description]\AsIs{To finish}
+\item[License]\AsIs{GPL (>= 2)}
+\item[Imports]\AsIs{Rcpp (>= 1.0.3), matrixStats, stats}
+\item[LinkingTo]\AsIs{Rcpp, RcppArmadillo}
+\item[RoxygenNote]\AsIs{7.1.0}
+\item[NeedsCompilation]\AsIs{yes}
+\item[Archs]\AsIs{i386, x64}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{signFlip-package}{Permutation based one sample t test}{signFlip.Rdash.package}
+\aliasA{signFlip}{signFlip-package}{signFlip}
+\keyword{package}{signFlip-package}
+%
+\begin{Description}\relax
+To finish
+\end{Description}
+%
+\begin{Details}\relax
+
+The DESCRIPTION file:
+
+\Tabular{ll}{
+Package: & signFlip\\{}
+Type: & Package\\{}
+Title: & Permutation based one sample t test\\{}
+Version: & 1.0\\{}
+Date: & 2019-12-10\\{}
+Author: & Angela Andreella\\{}
+Maintainer: & Angela Andreella <angela.andreella@phd.unipd.it>\\{}
+Description: & To finish\\{}
+License: & GPL (>= 2)\\{}
+Imports: & Rcpp (>= 1.0.3),
+matrixStats,
+stats\\{}
+LinkingTo: & Rcpp, RcppArmadillo\\{}
+RoxygenNote: & 7.1.0\\{}
+}
+
+Index of help topics:
+\begin{alltt}
+oneSample               Permutatation-based one sample t-test
+rowVariance             Rows Variance
+signFlip-package        Permutation based one sample t test
+\end{alltt}
+
+An overview of how to use the package, including the most important functions
+\end{Details}
+%
+\begin{Author}\relax
+Angela Andreella
+
+Maintainer: Angela Andreella <angela.andreella@phd.unipd.it>
+\end{Author}
+%
+\begin{References}\relax
+Literature or other references for background information
+\end{References}
+\inputencoding{utf8}
+\HeaderA{oneSample}{Permutatation-based one sample t-test}{oneSample}
+%
+\begin{Description}\relax
+Performs sign-flipping, i.e. permutation, one-sample t-tests
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+oneSample(X, B = 1000, alternative = "two.sided", seed = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{X}] data where rows represents the variables and columns the observations
+
+\item[\code{B}] number of permutations to perform, default is 1000.
+
+\item[\code{alternative}] character referring to the alternative hypothesis, "two.sided", "greater" or "less". Default is "two.sided"
+
+\item[\code{rand}] logical. Should p values computed by permutation distribution?
+
+\item[\code{seed}] specify seed, default is 1234.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns a list with the following objects: \code{Test} observed one sample t-test, \code{Test\_H0} Test statistics under H0, \code{pv} observed p-values, \code{pv\_H0} p-values under H0
+\end{Value}
+%
+\begin{Author}\relax
+Angela Andreella
+\end{Author}
+\inputencoding{utf8}
+\HeaderA{rowVariance}{Rows Variance}{rowVariance}
+%
+\begin{Description}\relax
+Performs the variance for each row in a matrix
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+rowVariance(X,na.rm = TRUE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{X}] data where rows represents the variables and columns the observations
+
+\item[\code{na.rm}] remove na?
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+rows variance
+\end{Value}
+%
+\begin{Author}\relax
+Angela Andreella
+\end{Author}
+\printindex{}
+\end{document}

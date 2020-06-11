@@ -1,0 +1,94 @@
+Hmm ... looks like a package
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit)
+entering extended mode
+(Rd2.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 75 language(s) loaded.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\book.cls"
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\bk10.clo"))
+(C:/PROGRA~1/R/R-36~1.3/share/texmf/tex/latex\Rd.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\bm.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\latin1.def"))
+No file Rd2.aux.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd")
+No file Rd2.toc.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def") [1{C:/Users/Angela Andr
+eella/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def") [2] [3] (Rd2.aux) ){C:/
+Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2
+.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb
+8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 71090 bytes).
+Transcript written on Rd2.log.
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit)
+entering extended mode
+(Rd2.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 75 language(s) loaded.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\book.cls"
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\bk10.clo"))
+(C:/PROGRA~1/R/R-36~1.3/share/texmf/tex/latex\Rd.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\bm.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu")
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\latin1.def")) (Rd2.aux)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd") (Rd2.toc)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def") [1{C:/Users/Angela Andr
+eella/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def") [2]
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def") [3] (Rd2.aux) ){C:/Prog
+ram Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/f
+onts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
+helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 71172 bytes).
+Transcript written on Rd2.log.
+Saving output to 'signFlip-manual.pdf' ...
+Done
+You may want to clean up by 'rm -Rf C:/Users/ANGELA~1/AppData/Local/Temp/RtmpCM4Dh0/Rd2pdf43b82c7d3cba'
