@@ -12,5 +12,5 @@ LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.1.0
 NeedsCompilation: yes
 Packaged: 2020-06-11 13:38:17 UTC; Angela Andreella
-Built: R 3.6.3; x86_64-w64-mingw32; 2020-06-11 13:43:24 UTC; windows
+Built: R 3.6.3; x86_64-w64-mingw32; 2020-06-11 13:50:32 UTC; windows
 Archs: i386, x64
