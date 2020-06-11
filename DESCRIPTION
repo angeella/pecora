@@ -13,3 +13,4 @@ Imports:
   stats
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.1.0
+Encoding: UTF-8

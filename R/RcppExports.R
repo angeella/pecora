@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 signFlip <- function(X, B) {
-    .Call(`_signFlip_signFlip`, X, B)
+    .Call('_signFlip_signFlip', PACKAGE = 'signFlip', X, B)
 }
 
