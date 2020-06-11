@@ -4,7 +4,7 @@
 \alias{oneSample}
 \title{Permutatation-based one sample t-test}
 \usage{
-oneSample(X, B = 1000, alternative = "two.sided", seed = NULL, rand = F)
+oneSample(X, B = 1000, alternative = "two.sided", seed = 1234, rand = FALSE)
 }
 \arguments{
 \item{X}{data where rows represents the variables and columns the observations}

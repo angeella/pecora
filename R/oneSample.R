@@ -1,6 +1,6 @@
 #' @title Permutatation-based one sample t-test
 #' @description Performs sign-flipping, i.e. permutation, one-sample t-tests
-#' @usage oneSample(X, B = 1000, alternative = "two.sided", seed = NULL, rand = F)
+#' @usage oneSample(X, B = 1000, alternative = "two.sided", seed = 1234, rand = FALSE)
 #' @param X data where rows represents the variables and columns the observations
 #' @param B number of permutations to perform, default is 1000.
 #' @param alternative character referring to the alternative hypothesis, "two.sided", "greater" or "lower". Default is "two.sided"
@@ -13,7 +13,7 @@
 #' @importFrom matrixStats rowRanks
 
 oneSample <- function(X, B = 1000, 
-                      alternative = c("two.sided", "lower", "greater"),
+                      alternative = "two.sided",
                       seed = 1234,rand = FALSE){
 
   alternative_set <- c("two.sided", "greater", "lower")
