@@ -22,6 +22,7 @@ oneSample <- function(X, B = 1000,
   alternative_set <- c("two.sided", "greater", "lower")
   
   set.seed(seed)
+
   
   alternative <- match.arg(tolower(alternative), alternative_set)
   
@@ -36,31 +37,34 @@ oneSample <- function(X, B = 1000,
   
   ## Test statistics under H0
   
-  Test_H0 <- signFlip(X,B)
+  Test_H0 <- signFlip(X,B-1)
+  
   Test_H0 <- ifelse(is.na(Test_H0), 0 , Test_H0)
   
   if(!rand){
     pv <- switch(alternative, 
-                 "two.sided" = 2*(pnorm(abs(Test), lower.tail=FALSE)),
-                 "greater" = pnorm(Test, lower.tail=FALSE),
-                 "lower" = 1-pnorm(Test, lower.tail=FALSE))
+                 "two.sided" = 2*(pt(abs(Test), df = n-1, lower.tail=FALSE)),
+                 "greater" = pt(Test, df = n-1, lower.tail=FALSE),
+                 "lower" = 1-pt(Test, df = n-1, lower.tail=FALSE))
     
     pv_H0 <- switch(alternative, 
-                    "two.sided" = 2*(pnorm(abs(Test_H0), lower.tail=FALSE)),
-                    "greater" = pnorm(Test_H0, lower.tail=FALSE),
-                    "lower" = 1-pnorm(Test_H0, lower.tail=FALSE))
+                    "two.sided" = 2*(pt(abs(Test_H0), df = n-1,  lower.tail=FALSE)),
+                    "greater" = pt(Test_H0, df = n-1,  lower.tail=FALSE),
+                    "lower" = 1-pt(Test_H0, df = n-1,  lower.tail=FALSE)) 
   }else{
     
     Test_matrix <- cbind(Test, Test_H0)
     pv_matrix <- switch(alternative, 
-                        "two.sided" = rowRanks(-abs(Test_matrix)) / (B+1),
-                        "greater" = rowRanks(-Test_matrix) / (B+1),
-                        "lower" = rowRanks(Test_matrix) / (B+1))
+                        "two.sided" = rowRanks(-abs(Test_matrix)) / ncol(Test_matrix),
+                        "greater" = rowRanks(-Test_matrix) / ncol(Test_matrix),
+                        "lower" = rowRanks(Test_matrix) / ncol(Test_matrix))
     
     pv <- pv_matrix[, 1]
-    pv_H0 <- pv_matrix[, 2:(B+1)]
+    pv_H0 <- pv_matrix[, 2:(B)]
   }
   
   out <- list(Test = Test, Test_H0 = Test_H0, pv = pv, pv_H0 = pv_H0)
+  
   return(out)
+  
 }
