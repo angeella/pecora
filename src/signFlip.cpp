@@ -6,8 +6,8 @@ using namespace Rcpp;
 // [[Rcpp::plugins(cpp11)]] 
 // [[Rcpp::export]] 
 arma::mat signFlip(arma::mat X, double B) {
-  int m = X.n_rows;
-  int n = X.n_cols;
+  double m = X.n_rows;
+  double n = X.n_cols;
   
   
   arma::mat T(m, B, arma::fill::zeros);
@@ -22,20 +22,22 @@ arma::mat signFlip(arma::mat X, double B) {
     Tb = X * eps;
     Tb1 = Tb / n; //mean
     Tb0 = (pow(X, 2) * eps1)/n; //E(x^2)
-    Tb2 = pow(Tb1,2)/pow(n,2); //E(X)^2
+    Tb2 = pow(Tb1,2); //E(X)^2
     Tb =  (Tb0-Tb2)*(n/(n-1)); //sample var
     T.col(bb) = Tb1/sqrt(Tb/n);
-    
   }
   return (T);
 }
 
+
 /*** R
 #m <- 100
-#n <- 10
-#B <- 200
+#n <- 100
+#B <- 1000
+#set.seed(123)
 #X <- matrix(rnorm(m*n), ncol=n)
 #set.seed(123)
 #T <- signFlip(X, B)
 #str(T)
 */
+

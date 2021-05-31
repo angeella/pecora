@@ -11,6 +11,9 @@
 #' @export
 #' @importFrom stats pnorm
 #' @importFrom matrixStats rowRanks
+#' @importFrom Rcpp evalCpp
+#' @useDynLib signFlip, .registration=TRUE
+
 
 oneSample <- function(X, B = 1000, 
                       alternative = "two.sided",

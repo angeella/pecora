@@ -2,5 +2,7 @@
 
 export(oneSample)
 export(rowVariance)
+importFrom(Rcpp,evalCpp)
 importFrom(matrixStats,rowRanks)
 importFrom(stats,pnorm)
+useDynLib(signFlip, .registration=TRUE)
