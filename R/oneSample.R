@@ -27,7 +27,7 @@
 #' @examples 
 #' X <- matrix(rnorm(100*20), ncol=20)
 #' out <- oneSample(X = X, alternative = "two.sided")
-
+#' @useDynLib pecora, .registration = TRUE
 
 oneSample <- function(X, B = 1000, 
                       alternative,

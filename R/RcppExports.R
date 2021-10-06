@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 permGroup <- function(X, B, label) {
-    .Call('_pecora_permGroup', PACKAGE = 'pecora', X, B, label)
+    .Call(`_pecora_permGroup`, X, B, label)
 }
 
 signFlip <- function(X, B) {
-    .Call('_pecora_signFlip', PACKAGE = 'pecora', X, B)
+    .Call(`_pecora_signFlip`, X, B)
 }
 
