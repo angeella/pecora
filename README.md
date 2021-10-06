@@ -1,12 +1,12 @@
 
-The **signflip** package perfoms the one sample t-test using the permutation theory, i.e., sign-flipping. 
+The **pecora** (permutation conditional random) package provides functions to perform the one-sample and two-samples t-tests using permutations/sign-flipping. 
 
 To install it:
 
 ```{r}
-devtools::install_github("angeella/signFlip")
+devtools::install_github("angeella/pecora")
 
-library(signFlip)
+library(pecora)
 ```
 
 A toy example:
