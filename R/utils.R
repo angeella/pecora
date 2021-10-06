@@ -5,7 +5,6 @@
 #' @param na.rm remove na? 
 #' @author Angela Andreella
 #' @return rows variance
-#' @export
 
 rowVariance <- function (X,na.rm = TRUE) 
 {

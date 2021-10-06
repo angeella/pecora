@@ -1,11 +1,11 @@
-Package: signFlip
+Package: pecora
 Type: Package
-Title: Permutation based one sample t test
+Title: Permutation Conditional reseampling tests
 Version: 1.0
 Date: 2019-12-10
 Author: Angela Andreella
 Maintainer: Angela Andreella <angela.andreella@phd.unipd.it>
-Description: To finish
+Description: It provides functions to perform permutation conditional reseampling one-sample and two-samples t-tests in a multivariate framework.
 License: GPL (>= 2)
 Imports: 
   Rcpp (>= 1.0.3),
