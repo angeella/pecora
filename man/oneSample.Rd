@@ -5,28 +5,26 @@
 \title{Permutatation-based one sample t-test}
 \usage{
 oneSample(X, B = 1000, alternative, seed = 1234, 
-rand = FALSE, permReturn = FALSE)
+exact = TRUE, permReturn = TRUE)
 }
 \arguments{
-\item{X}{data matrix where rows represent the \code{m} variables and columns the \code{n} observations.}
+\item{X}{data matrix where columns represent the \code{m} variables and rows the \code{n} observations.}
 
 \item{B}{numeric value, number of permutations to be performed, including the identity. Default is 1000.}
 
-\item{alternative}{character string referring to the alternative hypothesis (\code{greater}, \code{lower}, \code{two.sided}).}
+\item{alternative}{character string referring to the alternative hypothesis (\code{"greater"}, \code{"lower"}, or \code{"two.sided"}).}
 
 \item{seed}{numeric value, specify seed. Default is 1234.}
 
-\item{rand}{logical value, \code{TRUE} to compute p-values by permutation distribution.}
+\item{exact}{logical value, \code{TRUE} to compute p-values by permutation distribution.}
 
 \item{permReturn}{logical value, \code{TRUE} to return the t-tests and p-values permutation distribution.}
 }
 \value{
 Returns a list with the following objects:
 \describe{ 
-  \item{Test}{Vector of \eqn{m} observed one-sample t-tests}
-  \item{Test_H0}{Matrix with dimensions \eqn{m \times B} of permuted one-sample t-tests}
-  \item{pv}{Vector of \eqn{m} observed p-values} 
-  \item{pv_H0}{Matrix with dimensions \eqn{m \times B} of permuted p-values}}
+  \item{Test}{Matrix with dimensions \eqn{m \times B} of permuted one-sample t-tests. The first column is the observed one-sample t-tests.}
+  \item{pv}{Matrix with dimensions \eqn{m \times B} of permuted p-values. The first column is the observed p-values.}}
   if \code{permReturn = TRUE} otherwise returns a list with the following objects:
 \describe{ 
   \item{Test}{Vector of \eqn{m} observed one-sample t-tests}
@@ -36,7 +34,7 @@ Returns a list with the following objects:
 Performs sign-flipped one-sample t-tests.
 }
 \examples{
-X <- matrix(rnorm(100*20), ncol=20)
+X <- matrix(rnorm(100*20), nrow=20)
 out <- oneSample(X = X, alternative = "two.sided")
 }
 \author{
