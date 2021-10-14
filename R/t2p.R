@@ -1,4 +1,4 @@
-#' @title From test statistics to p-values
+#' @name t2p
 #' @description Use permutation distribution of a test statistic to get p-values.
 #' @param Test_matrix matrix where columns represent the B permutations and rows the m tests statistic. 
 #' The observed test statistic is in the first column
@@ -8,10 +8,11 @@
 #' @param permReturn logical value, \code{TRUE} to return the t-tests and p-values permutation distribution.
 #' @param gdl numerical value. Degree of freedom.
 #' @return matrix of p-values where columns represent the B permutations and rows the m tests statistic. 
-#' @export
 #' @importFrom stats pt
 #' @importFrom matrixStats rowRanks
 #' 
+NULL
+#> NULL
 t2p <- function(Test_matrix, alternative, exact = TRUE, permReturn, gdl = NULL){
 
   if(!exact & is.null(gdl)){warning("Please insert the degree of freedom")}
@@ -43,7 +44,7 @@ t2p <- function(Test_matrix, alternative, exact = TRUE, permReturn, gdl = NULL){
                           "two.sided" = 2*(pt(abs(Test_matrix[,1]), df = gdl,  lower.tail=FALSE)),
                           "greater" = pt(Test_matrix[,1], df = gdl,  lower.tail=FALSE),
                           "lower" = 1-pt(Test_matrix[,1], df = gdl,  lower.tail=FALSE)) 
-      
+      out <- list(tv = Test_matrix[,1], pv = pv_matrix[, 1])
     }else{
       
       pv_matrix <- switch(alternative, 
@@ -51,10 +52,10 @@ t2p <- function(Test_matrix, alternative, exact = TRUE, permReturn, gdl = NULL){
                           "greater" = rowRanks(-Test_matrix) / ncol(Test_matrix),
                           "lower" = rowRanks(Test_matrix) / ncol(Test_matrix))
       
-      
+      out <- list(tv = Test_matrix[,1], pv = pv_matrix)
     }
     
-    out <- list(Test = Test_matrix[,1], pv = pv_matrix[, 1])
+    
   }
   
   return(out)

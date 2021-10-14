@@ -25,8 +25,8 @@ exact = TRUE, permReturn = FALSE, label = NULL)
 \value{
 Returns a list with the following objects:
 \describe{ 
-  \item{Test}{Matrix with dimensions \eqn{m \times B} of permuted one-sample t-tests. The first column is the observed one-sample t-tests.}
-  \item{pv}{Matrix with dimensions \eqn{m \times B} of permuted p-values. The first column is the observed p-values.}}
+  \item{Test}{Matrix with dimensions \eqn{m x B} of permuted one-sample t-tests. The first column is the observed one-sample t-tests.}
+  \item{pv}{Matrix with dimensions \eqn{m x B} of permuted p-values. The first column is the observed p-values.}}
   if \code{permReturn = TRUE} otherwise returns a list with the following objects:
 \describe{ 
   \item{Test}{Vector of \eqn{m} observed one-sample t-tests}
