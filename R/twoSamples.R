@@ -54,7 +54,7 @@ twoSamples <- function(X, B = 1000, alternative = "two.sided",
   colM1 <- colMeans(X[,label == id[1]])
   colM2 <-colMeans(X[,label == id[2]])
   pooled.var <- (colV1/n1 + colV2/n2)
-  Test <- (colM1 - colM2)/sqrt(pooled.var * (1/n1 + 1/n2))
+  Test <- (colM1 - colM2)/sqrt(pooled.var)
   Test <- ifelse(is.na(Test), 0 , Test)
   ## Test statistics under H0
   Test_H0 <- permGroup(as.matrix(t(X)),B-1,label)
