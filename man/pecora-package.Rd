@@ -17,11 +17,13 @@ The tests comprised are: the one and two samples t-tests.
 \examples{
 
 X <- matrix(rnorm(100*20), nrow=20)
-out <- oneSample(X = X, alternative = "two.sided")
+out <- oneSample(X = X)
+pv <- t2p(Test = out, alternative = "two.sided")
 
 X <- matrix(rnorm(100*20), nrow=20)
 rownames(X) <- c(rep(0, 10), rep(1,10))
 out<- twoSamples(X = X) 
+pv <- t2p(Test = out, alternative = "two.sided")
 
 }
 \references{

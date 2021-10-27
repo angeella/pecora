@@ -1,23 +1,19 @@
 #' @title Permutatation-based two sample t-test
 #' @description Performs two-sample t-tests by permutations.
-#' @usage twoSamples(X, B = 1000, alternative, seed = 1234, 
-#' exact = TRUE, permReturn = FALSE, label = NULL)
+#' @usage twoSamples(X, B = 1000, seed = 1234, 
+#' permReturn = TRUE, label = NULL)
 #' @param X data matrix where columns represent the \code{m} variables and rows the \code{n} observations. The columns' name defines the groups' label.
 #' @param B numeric value, number of permutations to be performed, including the identity. Default is 1000.
-#' @param alternative character string referring to the alternative hypothesis (\code{"greater"}, \code{"lower"}, or \code{"two.sided"}).  
 #' @param seed numeric value, specify seed. Default is 1234.
-#' @param exact logical value, \code{TRUE} to compute p-values by permutation distribution.
-#' @param permReturn logical value, \code{TRUE} to return the t-tests and p-values permutation distribution.
-#' @param label by default \code{label = NULL}. Labels of the observations, if \code{NULL} the rows's name are considered.
+#' @param permReturn logical value, \code{TRUE} to return the t-tests and p-values permutation distribution. Default is \code{TRUE}.
+#' @param label by default \code{label = NULL}. Labels of the observations, if \code{NULL} the rows's name are considered. D
 #' @author Angela Andreella
-#' @return Returns a list with the following objects:
+#' @return Returns a matrix objects:
 #' \describe{ 
-#'   \item{Test}{Matrix with dimensions \eqn{m x B} of permuted one-sample t-tests. The first column is the observed one-sample t-tests.}
-#'   \item{pv}{Matrix with dimensions \eqn{m x B} of permuted p-values. The first column is the observed p-values.}}
-#'   if \code{permReturn = TRUE} otherwise returns a list with the following objects:
+#'   \item{Test}{Matrix with dimensions \eqn{m x B} of permuted two-samples t-tests. The first column is the observed one-sample t-tests.}}
+#'   if \code{permReturn = TRUE} otherwise returns:
 #' \describe{ 
-#'   \item{Test}{Vector of \eqn{m} observed one-sample t-tests}
-#'   \item{pv}{Vector of \eqn{m} observed p-values}} 
+#'   \item{Test}{Vector of \eqn{m} observed two-samples t-tests}}
 #' @export
 #' @importFrom stats pnorm
 #' @importFrom matrixStats rowRanks
@@ -28,8 +24,8 @@
 #' out<- twoSamples(X = X) 
 
 
-twoSamples <- function(X, B = 1000, alternative = "two.sided", 
-                      seed = 1234, exact = TRUE, permReturn = FALSE, 
+twoSamples <- function(X, B = 1000, 
+                      seed = 1234, permReturn = TRUE, 
                       label = NULL){
   
   if(!is.null(seed)){set.seed(seed)}
@@ -56,18 +52,13 @@ twoSamples <- function(X, B = 1000, alternative = "two.sided",
   pooled.var <- (colV1/n1 + colV2/n2)
   Test <- (colM1 - colM2)/sqrt(pooled.var)
   Test <- ifelse(is.na(Test), 0 , Test)
-  ## Test statistics under H0
-  Test_H0 <- permGroup(as.matrix(t(X)),B-1,label)
-  Test_H0 <- ifelse(is.na(Test_H0), 0 , Test_H0)
   
-  Test_matrix <- matrix(cbind(Test, Test_H0), ncol = B)
-  gdl <- ((colV1/n1 + colV2/n2)^2)/((((colV1/n1)^2)/(n1-1))+(((colV2/n2)^2)/(n2-1)))
+  if(permReturn){
+    ## Test statistics under H0
+    Test_H0 <- permGroup(as.matrix(t(X)),B-1,label)
+    Test_H0 <- ifelse(is.na(Test_H0), 0 , Test_H0)
+    Test <- matrix(cbind(Test, Test_H0), ncol = B)
+  }
   
-  out <- t2p(Test_matrix = Test_matrix, 
-             alternative = alternative, 
-             exact = exact,
-             permReturn = permReturn,
-             gdl = gdl)
-  
-  return(out)
+  return(Test)
 }

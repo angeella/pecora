@@ -1,62 +1,78 @@
-#' @name t2p
+#' @title From t-tests to p-values
 #' @description Use permutation distribution of a test statistic to get p-values.
-#' @param Test_matrix matrix where columns represent the B permutations and rows the m tests statistic. 
+#' @usage t2p(Test, alternative, rankBased = TRUE, permReturn, df = NULL)
+#' @param Test can be a matrix or a vector. 
+#' In the first case the columns represent the B permutations and rows the m tests statistic. 
 #' The observed test statistic is in the first column
-#' and the permutation distribution in the remaining columns
+#' and the permutation distribution in the remaining columns.
+#' In the second case, it is a vector of length \eqn{m} of observed tests statistics. 
+#' If \code{rankBased = TRUE}, you must provide the first option (matrix of permuted statistical tests).
 #' @param alternative character string referring to the alternative hypothesis (\code{"greater"}, \code{"lower"}, or \code{"two.sided"}). 
-#' @param exact logical value, \code{TRUE} to compute p-values by permutation distribution. Default @TRUE.
-#' @param permReturn logical value, \code{TRUE} to return the t-tests and p-values permutation distribution.
-#' @param gdl numerical value. Degree of freedom.
-#' @return matrix of p-values where columns represent the B permutations and rows the m tests statistic. 
+#' @param rankBased logical value, \code{TRUE} to compute p-values by permutation distribution. Default @TRUE.
+#' @param permReturn logical value, \code{TRUE} to return the t-tests and p-values permutation distribution. Default @TRUE.
+#' @param df numerical value. Degrees of freedom (\eqn{> 0}, maybe non-integer). \code{df = Inf} is allowed.
+#' @author Angela Andreella
+#' @return Returns an object matrix:
+#' \describe{ 
+#'   \item{pv}{Matrix with dimensions \eqn{m x B} of permuted one-sample p-values. The first column is the p-values for the observed one-sample t-tests.}}
+#' if \code{permReturn = TRUE} otherwise returns:
+#' \describe{ 
+#'   \item{pv}{Vector of \eqn{m} p-values for the observed one-sample t-tests}}
+#' @export
 #' @importFrom stats pt
 #' @importFrom matrixStats rowRanks
-#' 
-NULL
-#> NULL
-t2p <- function(Test_matrix, alternative, exact = TRUE, permReturn, gdl = NULL){
+#' @examples 
+#' X <- matrix(rnorm(100*20), nrow=20)
+#' out <- oneSample(X = X)
+#' pv <- t2p(Test = out, alternative = "two.sided")
 
-  if(!exact & is.null(gdl)){warning("Please insert the degree of freedom")}
+t2p <- function(Test, alternative, rankBased = TRUE, permReturn = TRUE, df = NULL){
+
+  if(!rankBased & is.null(df)){stop("Please insert the degrees of freedom")}
+  
+  if(rankBased & is.null(dim(Test))){stop("Please insert the matrix of permuted statistical tests")}
+  
   if(permReturn){
     
-    if(!exact){
-      
-      pv_matrix <- switch(alternative, 
-                          "two.sided" = 2*(pt(abs(Test_matrix), df = gdl,  lower.tail=FALSE)),
-                          "greater" = pt(Test_matrix, df = gdl,  lower.tail=FALSE),
-                          "lower" = 1-pt(Test_matrix, df = gdl,  lower.tail=FALSE)) 
+    if(!rankBased){
+
+      pv <- switch(alternative, 
+                          "two.sided" = 2*(pt(abs(Test), df = df,  lower.tail=FALSE)),
+                          "greater" = pt(Test, df = df,  lower.tail=FALSE),
+                          "lower" = 1-pt(Test, df = df,  lower.tail=FALSE)) 
       
     }else{
       
-      pv_matrix <- switch(alternative, 
-                          "two.sided" = rowRanks(-abs(Test_matrix)) / ncol(Test_matrix),
-                          "greater" = rowRanks(-Test_matrix) / ncol(Test_matrix),
-                          "lower" = rowRanks(Test_matrix) / ncol(Test_matrix))
+      pv <- switch(alternative, 
+                          "two.sided" = rowRanks(-abs(Test)) / ncol(Test),
+                          "greater" = rowRanks(-Test) / ncol(Test),
+                          "lower" = rowRanks(Test) / ncol(Test))
       
       
     }
     
-    out <- list(Test = Test_matrix, pv = pv_matrix)
   }else{
     
-    if(!exact){
+    if(!rankBased){
       
-      pv_matrix <- switch(alternative, 
-                          "two.sided" = 2*(pt(abs(Test_matrix[,1]), df = gdl,  lower.tail=FALSE)),
-                          "greater" = pt(Test_matrix[,1], df = gdl,  lower.tail=FALSE),
-                          "lower" = 1-pt(Test_matrix[,1], df = gdl,  lower.tail=FALSE)) 
-      out <- list(tv = Test_matrix[,1], pv = pv_matrix[, 1])
+      if(!is.null(dim(Test))){Test <- Test[,1]}
+      
+      pv <- switch(alternative, 
+                          "two.sided" = 2*(pt(abs(Test), df = df,  lower.tail=FALSE)),
+                          "greater" = pt(Test, df = df,  lower.tail=FALSE),
+                          "lower" = 1-pt(Test, df = df,  lower.tail=FALSE)) 
     }else{
       
-      pv_matrix <- switch(alternative, 
-                          "two.sided" = rowRanks(-abs(Test_matrix)) / ncol(Test_matrix),
-                          "greater" = rowRanks(-Test_matrix) / ncol(Test_matrix),
-                          "lower" = rowRanks(Test_matrix) / ncol(Test_matrix))
+      pv <- switch(alternative, 
+                          "two.sided" = rowRanks(-abs(Test)) / ncol(Test),
+                          "greater" = rowRanks(-Test) / ncol(Test),
+                          "lower" = rowRanks(Test) / ncol(Test))
       
-      out <- list(tv = Test_matrix[,1], pv = pv_matrix)
+      pv <- pv[,1]
     }
     
     
   }
   
-  return(out)
+  return(pv)
 }
