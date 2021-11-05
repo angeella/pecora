@@ -28,11 +28,17 @@ twoSamples <- function(X, B = 1000,
                       seed = 1234, permReturn = TRUE, 
                       label = NULL){
   
-  if(!is.null(seed)){set.seed(seed)}
- # alternative_set <- c("greater", "lower", "two.sided")
- # alternative <- match.arg(tolower(alternative), alternative_set)
+  set.seed(seed)
   
-  if(is.null(label)){label <- rownames(X)}
+  #If X is a vector we have one variable to test
+  if(is.null(dim(X))){X <- matrix(X, ncol = 1)}
+  
+  #Check labels
+  if(is.null(label)){
+    if(is.null(rownames(X))){
+      stop("Please insert the labels of the observations which describe the two groups to perform the two-samples t-test.")
+    }
+    label <- rownames(X)}
   
   label <- factor(label)
   levels(label) <- c(0,1)

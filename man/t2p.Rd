@@ -4,7 +4,7 @@
 \alias{t2p}
 \title{From t-tests to p-values}
 \usage{
-t2p(Test, alternative, rankBased = TRUE, permReturn, df = NULL)
+t2p(Test, alternative = "two.sided", rankBased = TRUE, permReturn = TRUE, df = Inf)
 }
 \arguments{
 \item{Test}{can be a matrix or a vector. 
@@ -14,13 +14,13 @@ and the permutation distribution in the remaining columns.
 In the second case, it is a vector of length \eqn{m} of observed tests statistics. 
 If \code{rankBased = TRUE}, you must provide the first option (matrix of permuted statistical tests).}
 
-\item{alternative}{character string referring to the alternative hypothesis (\code{"greater"}, \code{"lower"}, or \code{"two.sided"}).}
+\item{alternative}{character string referring to the alternative hypothesis (\code{"greater"}, \code{"lower"}, or \code{"two.sided"}). is \code{"two.sided"}.}
 
 \item{rankBased}{logical value, \code{TRUE} to compute p-values by permutation distribution. Default @TRUE.}
 
 \item{permReturn}{logical value, \code{TRUE} to return the t-tests and p-values permutation distribution. Default @TRUE.}
 
-\item{df}{numerical value. Degrees of freedom (\eqn{> 0}, maybe non-integer). \code{df = Inf} is allowed.}
+\item{df}{numerical value. Degrees of freedom (\eqn{> 0}, maybe non-integer). Default \code{df = Inf}}
 }
 \value{
 Returns an object matrix:
@@ -36,7 +36,7 @@ Use permutation distribution of a test statistic to get p-values.
 \examples{
 X <- matrix(rnorm(100*20), nrow=20)
 out <- oneSample(X = X)
-pv <- t2p(Test = out, alternative = "two.sided")
+pv <- t2p(Test = out)
 }
 \author{
 Angela Andreella

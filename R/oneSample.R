@@ -26,6 +26,8 @@ oneSample <- function(X, B = 1000,
 
   set.seed(seed)
 
+  #If X is a vector we have one variable to test
+  if(is.null(dim(X))){X <- matrix(X, ncol = 1)}
   ## number of obeservation
   n <- nrow(X)
   # number of variables
