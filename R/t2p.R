@@ -45,9 +45,9 @@ t2p <- function(Test, alternative = "two.sided",
     }else{
       
       pv <- switch(alternative, 
-                          "two.sided" = rowRanks(-abs(Test)) / ncol(Test),
-                          "greater" = rowRanks(-Test) / ncol(Test),
-                          "lower" = rowRanks(Test) / ncol(Test))
+                          "two.sided" = rowRanks(-abs(Test), ties.method = "max") / ncol(Test),
+                          "greater" = rowRanks(-Test, ties.method = "max") / ncol(Test),
+                          "lower" = rowRanks(Test, ties.method = "max") / ncol(Test))
       
       
     }
@@ -65,9 +65,9 @@ t2p <- function(Test, alternative = "two.sided",
     }else{
       
       pv <- switch(alternative, 
-                          "two.sided" = rowRanks(-abs(Test)) / ncol(Test),
-                          "greater" = rowRanks(-Test) / ncol(Test),
-                          "lower" = rowRanks(Test) / ncol(Test))
+                          "two.sided" = rowRanks(-abs(Test), ties.method = "max") / ncol(Test),
+                          "greater" = rowRanks(-Test, ties.method = "max") / ncol(Test),
+                          "lower" = rowRanks(Test, ties.method = "max") / ncol(Test))
       
       pv <- pv[,1]
     }
