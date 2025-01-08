@@ -1,9 +1,9 @@
 Package: pecora
 Type: Package
 Title: Permutation Conditional Random Tests
-Version: 0.1.1
-Date: 2021-10-06
-Authors@R: c(person(given="Angela", family="Andreella", comment=c("Main author", ORCID  = "0000-0002-1141-3041"), email="angela.andreella@unipd.it", role=c("aut", "cre")))
+Version: 0.1.2
+Date: 2025-01-08
+Authors@R: c(person(given="Angela", family="Andreella", comment=c("Main author", ORCID  = "0000-0002-1141-3041"), email="angela.andreella@unitn.it", role=c("aut", "cre")))
 Description: It provides functions to perform permutation conditional random one-sample and two-samples t-tests in a multivariate framework.
 License: GPL (>= 2)
 Imports: 
